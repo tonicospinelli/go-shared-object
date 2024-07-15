@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"milenio.capital/code-challenge/pkg"
+	"milenio.capital/code-challenge/pkg/csv"
+	"os"
 )
 
 func main() {
@@ -11,9 +12,16 @@ func main() {
 	filters := "col1>l1c1\ncol3>l1c3"
 
 	fmt.Println("processCsv output:")
-	pkg.ProcessCsv(rawCsvData, showColumns, filters)
+	err := csv.ProcessCsv(rawCsvData, showColumns, filters)
+	if err != nil {
+		_, _ = fmt.Fprintln(os.Stderr, err)
+	}
 	fmt.Println("")
 
 	fmt.Println("processCsvFile output:")
-	pkg.ProcessCsvFile("data.csv", showColumns, filters)
+	err = csv.ProcessCsvFile("data.csv", showColumns, filters)
+	if err != nil {
+		_, _ = fmt.Fprintln(os.Stderr, err)
+	}
+
 }

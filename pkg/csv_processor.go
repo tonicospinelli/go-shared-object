@@ -11,6 +11,7 @@ import (
 
 var mtx sync.Mutex
 
+// DEPRECATED: use csv.ProcessCsv
 func ProcessCsv(csvData string, selectedColumns string, rowFilterDefinitions string) {
 	csvHeader := parseHeader(strings.Split(csvData, "\n")[0])
 	parseSelectedColumns(selectedColumns, &csvHeader)
@@ -18,6 +19,7 @@ func ProcessCsv(csvData string, selectedColumns string, rowFilterDefinitions str
 	processCsvData(csvData, csvHeader, filters)
 }
 
+// DEPRECATED: use csv.ProcessCsvFile
 func ProcessCsvFile(csvFilePath string, selectedColumns string, rowFilterDefinitions string) {
 	file, err := os.Open(csvFilePath)
 	if err != nil {
